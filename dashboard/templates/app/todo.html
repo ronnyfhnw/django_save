@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://d3js.org/d3.v7.min.js" defer ></script>
+      <script src="https://cdn.jsdelivr.net/npm/d3-scale@4" defer ></script>
+      <title>todo</title>
+      <link rel="stylesheet" href="{% static '/css/todo.css' %}">
+</head>
+<body>
+      <div id="titlediv">
+            <div id="homebutton">
+                  <a href="{% url 'home'%}">
+                        <img src="../../../static/pics/home.png" alt="homebutton">
+                  </a>
+            </div>
+            <div id="header">
+                  <h1>todo</h1>
+            </div>
+      </div>
+
+      <svg class="container"></svg>
+
+      <script>
+      
+            const DUMMY_DATA = [
+                  {id: 'd1', value: 10, region: 'CH'},
+                  {id: 'd2', value: 12, region: 'GER'},
+                  {id: 'd3', value: 13, region: 'AUT'},
+                  {id: 'd4', value: 15, region: 'ITA'},
+            ];
+
+            const xScale = d3.scaleBand().domain(DUMMY_DATA).map(dataPoint => dataPoint.region).rangeRound([0, 960]).padding(0.5);
+            const yScale = d3.scaleLinear().domain([0, 18]).range([500, 0]);
+
+            const container = d3.select('svg')
+              .classed('container', true)
+              .style('border', '1px solid red');
+
+            container
+              .selectAll('.bar')
+              .data(DUMMY_DATA)
+              .enter()
+              .append('rect')
+              .classed('bar', true)
+              .attr('width', data => xScale.bandwidth())
+              .attr('height', data => yScale(data.value));
+      </script>
+      
+</body>
+</html></html>

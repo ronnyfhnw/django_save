@@ -1,0 +1,131 @@
+body {
+      width: 960px;
+      margin: auto;
+      background-image: url("../pics/background.jpg");
+}
+
+#titlediv {
+      width: 960px;
+      height: 110px;
+      box-sizing: border-box;
+}
+
+a {
+      height: 110px;
+      width: 110px;
+}
+
+#homebutton{
+      width: 110px;
+      height: 110px;
+      border: 5px solid transparent;
+      box-sizing: border-box;
+      float: left;
+      background-color: rgba(82,82,82,0.4);
+}
+
+#homebutton:hover , #homebutton:active{
+      box-sizing: border-box;
+      padding: 0px;
+      border: 5px solid rgba(255,255,255,0.7);
+}
+#header {
+      height: 110px;
+      width: 850px;
+      box-sizing: border-box;
+      padding-left: 30px;
+      float: left;
+      background-color: rgba(82,82,82,0.4);
+}
+
+h1 {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: white;
+      padding-top: 36.5px;
+      box-sizing: border-box;
+      border: 0px;
+      margin: auto;
+}     
+
+#current_values {
+      margin-top: 5px;
+      height: 200px;
+      width: 960px;
+      background-color: rgba(82,82,82,0.4);
+}
+
+#measurements {
+      height: 200px;
+      width: 320px;
+      float: left;
+      box-sizing:border-box;
+      background-color: transparent;
+}
+
+#value {
+      height: 100px;
+      width: 320px;
+      float: left;
+      box-sizing: border-box;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: green;
+      margin: auto;
+      font-size: 30px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 98px;       /* The same as your div height */
+      background-color: rgba(0,0,21, 0.6);
+}
+
+#value_bad {
+      height: 100px;
+      width: 320px;
+      float: left;
+      box-sizing: border-box;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: red;
+      margin: auto;
+      font-size: 30px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 98px;       /* The same as your div height */
+      background-color: rgba(0,0,21, 0.6);
+}
+
+#value_title {
+      height: 100px;
+      width: 320px;
+      float: left;
+      box-sizing: border-box;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: white;
+      margin: auto;
+      font-size: 30px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 98px;       /* The same as your div height */
+      background-color: transparent;
+}
+
+#value_title:hover {
+      height: 100px;
+      width: 320px;
+      float: left;
+      border: 2px solid white;
+      box-sizing: border-box;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: white;
+      margin: auto;
+      font-size: 30px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 96px;       /* The same as your div height */
+      background-color: transparent;
+}
+
+#plot {
+      margin-top: 5px;
+      width: 960px;
+      height: 500px;
+      color: white;
+}

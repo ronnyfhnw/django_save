@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../python-server"
+		},
+		{
+			"path": "../../../../oura_api_calls"
+		}
+	],
+	"settings": {}
+}

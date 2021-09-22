@@ -1,0 +1,170 @@
+{% load static %}
+{% load plotly_dash %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Oura</title>
+      <link rel="stylesheet" href="{% static '/css/oura.css' %}">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+<body id="page">
+      <div id="titlediv">
+            <div id="homebutton">
+                  <a href="{% url 'home'%}">
+                        <img src="../../../static/pics/home.png" alt="homebutton">
+                  </a>
+            </div>
+            <div id="header">
+                  <h1>Oura</h1>
+            </div>
+      </div>
+
+      <div id="current_values">
+            <div id="measurements">
+                  <a href="{% url 'oura_sleep' %}" id="value_title">sleep</a>
+                  <div id="value">
+                        {{ sleep }}
+                  </div>
+                  {% if sleep_diff < 0 %}
+                  <div id="value_bad">
+                  {% elif sleep_diff == 0 %}
+                  <div id="value">
+                  {% else %}
+                  <div id="value_good">
+                  {% endif %}
+                        {{ sleep_diff}}
+                  </div>
+            </div>
+            <div id="measurements">
+                  <a href="{% url 'oura_sleep' %}" id="value_title">readiness</a>
+                  <div id="value">
+                        {{ readiness }}
+                  </div>
+                  {% if readiness_diff < 0 %}
+                  <div id="value_bad">
+                  {% elif readiness_diff == 0 %}
+                  <div id="value">
+                  {% else %}
+                  <div id="value_good">
+                  {% endif %}
+                        {{ readiness_diff }}
+                  </div>
+            </div>
+            <div id="measurements">
+                  <a href="{% url 'oura_activity' %}" id="value_title">activity</a>
+                  <div id="value"> 
+                        {{ activity }}
+                  </div>
+                  {% if activity_diff < 0 %}
+                  <div id="value_bad">
+                  {% elif activity_diff == 0 %}
+                  <div id="value">
+                  {% else %}
+                  <div id="value_good">
+                  {% endif %}
+                        {{ activity_diff }}
+                  </div>
+            </div> 
+      </div>
+      
+      <div id="plot_title">
+            development readiness score
+      </div>
+
+      <div id="canvas">
+            <canvas id="myChart" width="956" height="300"></canvas>
+            <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                  labels: [{% for element in readiness_data %}'{{ element.timestamp }}', {% endfor %}],
+                  datasets: [{
+                        data: [{% for element in readiness_data %}'{{ element.readiness_score }}', {% endfor %}],
+
+                        borderWidth: 1,
+                        borderColor: 'rgba(0, 160, 0, 1)',
+                        borderWidth: 5,
+                        backgroundColor: 'rgba(0,0,0,0)'
+                  }]
+            },
+            options: {
+                  layout: {
+                        padding: 20
+                  },
+                  plugins: {
+                        title: {
+                              display: true,
+                              color: 'rgba(255,255,255,0)'
+                        }
+                  },
+                  legend: {
+                        display: false
+                  },
+                  elements: {
+                        point : {
+                              radius: 0
+                        }
+                  },
+                  scales: {
+                        xAxes: [{
+                              ticks: {
+                                    display: false,
+                                    autoSkip: false,
+                                    maxRotation: 90,
+                                    minRotation: 90,
+                                    fontSize: 20,
+                                    fontColor: 'rgba(255,255,255,1)'
+                              },
+                              gridLines: {
+                                    display: false
+                              }
+                        }],
+                        yAxes: [{
+                              ticks: {
+                                    fontSize: 20,
+                                    fontColor: 'rgba(255,255,255,1)'
+                              }, 
+                              gridLines: {
+                                    color: 'rgba(255,255,255,1)'
+                              }
+                        }]
+
+                  }
+            }
+            });
+            </script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="/resources/demos/style.css">
+      <script>
+      $( function() {
+            $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [ 75, 300 ],
+            slide: function( event, ui ) {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            }
+      });
+      $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+          " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+      });
+      </script>
+      </head>
+      <body>
+     
+      <p>
+            <label for="amount">Price range:</label>
+            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+      </p>
+     
+      <div id="slider-range"></div>
+      </div>
+
+</body>

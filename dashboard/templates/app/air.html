@@ -1,0 +1,50 @@
+{% load static %}
+{% load plotly_dash %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>air</title>
+      <link rel="stylesheet" type="text/css" href="{% static '/css/air.css' %}">
+      <script> src="https://cdn.plot.ly/plotly-latest.min.js"</script>
+</head>
+<body>
+      <div id="titlediv">
+            <div id="homebutton">
+                  <a href="{% url 'home'%}">
+                        <img src="../../../static/pics/home.png" alt="homebutton">
+                  </a>
+            </div>
+            <div id="header">
+                  <h1>Air quality</h1>
+            </div>
+      </div>
+      <div id="current_values">
+            <div id="measurements">
+                  <div id="value_title">co2</div>
+                  <div id="value">
+                  500 ppm
+                  </div>
+            </div>
+            <div id="measurements">
+                  <div id="value_title">temperature</div>
+                  <div id="value">
+                        25°C
+                  </div>
+            </div>
+            <div id="measurements">
+                  <div id="value_title">humidity</div>
+                  <div id="value"> 
+                        50%
+                  </div>
+            </div>
+      </div>
+
+      <div>
+            {% plotly_app name='input' %}
+      </div>
+
+</body>
+</html>
